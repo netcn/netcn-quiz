@@ -1,0 +1,4 @@
+Sitemap: https://quiz.netcn.org/sitemap.xml
+
+User-agent: *
+Allow: /

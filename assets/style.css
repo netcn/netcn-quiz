@@ -1,0 +1,63 @@
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --color-bg: #ffffff;
+  --color-surface: #f4f5f7;
+  --color-surface-hover: #eaeaec;
+  --color-card-bg: #ffffff;
+  --color-header-bg: rgba(255,255,255,0.85);
+  --color-text-primary: #18181b;
+  --color-text-secondary: #71717a;
+  --color-text-tertiary: #a1a1aa;
+  --color-link: #c2410c;
+  --color-link-hover: #9a3412;
+  --color-border: #e4e4e7;
+  --color-border-light: #f0f0f3;
+  --color-accent: #c2410c;
+  --color-accent-bg: rgba(194,65,12,0.09);
+  --color-placeholder: #d4d4d8;
+}
+
+[data-theme="dark"] {
+  --color-bg: #09090b;
+  --color-surface: #18181b;
+  --color-surface-hover: #1f1f23;
+  --color-card-bg: #141417;
+  --color-header-bg: rgba(9,9,11,0.85);
+  --color-text-primary: #e4e4e7;
+  --color-text-secondary: #a1a1aa;
+  --color-text-tertiary: #71717a;
+  --color-link: #fb923c;
+  --color-link-hover: #fdba74;
+  --color-border: #27272a;
+  --color-border-light: #1c1c21;
+  --color-accent: #fb923c;
+  --color-accent-bg: rgba(251,146,60,0.14);
+  --color-placeholder: #3f3f46;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a { color: var(--color-link); text-decoration: none; }
+a:hover { color: var(--color-link-hover); }
+
+.container { max-width: 100%; margin: 0 auto; padding: 0 8px; }
+
+/* 顶栏与页脚由 shell/netcn-shell.css 统一（.nc-shell / .nc-search / .nc-tools / .nc-foot） */
+
+@media (max-width: 480px) {
+  .container { padding: 0 6px; }
+  .cat-tag { font-size: 13px; padding: 1px 5px; }
+  .category-section a { font-size: 13px; padding: 2px 5px; }
+  .categories-grid { column-gap: 3px; row-gap: 3px; }
+}
