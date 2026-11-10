@@ -20,9 +20,9 @@
     <title>头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/quiz.css">
-    <link rel="stylesheet" href="shell/netcn-shell.css?v=20261107c6">
-    <link rel="stylesheet" href="shell/netcn-ui.css?v=20261107c6">
-    <script src="shell/shell.js?v=20261107c6"></script>
+    <link rel="stylesheet" href="shell/netcn-shell.css?v=20261110a1">
+    <link rel="stylesheet" href="shell/netcn-ui.css?v=20261110a1">
+    <script src="shell/shell.js?v=20261110a1"></script>
     <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48">
     <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -70,6 +70,7 @@
             <div class="quiz-tab" data-type="miyu">❓ <span data-i18n="t3">猜谜语</span><span class="cnt"></span></div>
             <div class="quiz-tab" data-type="iq">🧠 <span data-i18n="t4">智力测试</span><span class="cnt"></span></div>
         </div>
+        <p id="quizCnNote" data-i18n="cnNote" hidden style="font-size:12px;line-height:1.65;color:var(--ui-ink3,#98a1b0);margin:0 0 12px;padding:8px 12px;background:var(--ui-surface,#f4f6f8);border-radius:10px"></p>
 
         <div class="quiz-controls">
             <div class="quiz-stats"><b id="quizTitle">脑筋急转弯</b> <span data-i18n="statsOf">第</span> <span id="currentNum">1</span> / <span id="totalNum">0</span> <span data-i18n="statsUnit">题</span></div>
@@ -113,7 +114,8 @@
       statsOf: '第', statsUnit: '题', prev: '◀ 上一题', show: '显示答案', hide: '隐藏答案', next: '随机下一题 ▶',
       loading: '加载中...', noMatch: '没有找到匹配的题目，换个词试试。',
       footNote: '© 2011-2026 头脑体操 quiz.netcn.org',
-      footSite: '3,193 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试'
+      footSite: '3,193 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试',
+      cnNote: ''
     },
     en: {
       brand: 'Brain Teasers', nav: 'Nav', ask: 'Science Q&A', quiz: 'Brain Teasers', game: 'Games',
@@ -122,12 +124,19 @@
       statsOf: '', statsUnit: '', prev: '◀ Prev', show: 'Show answer', hide: 'Hide answer', next: 'Random next ▶',
       loading: 'Loading...', noMatch: 'No matching question. Try another word.',
       footNote: '© 2011-2026 Brain Teasers quiz.netcn.org',
-      footSite: '3,193 questions · Brain teasers / character riddles / riddles / IQ test'
+      footSite: '3,193 questions · Brain teasers / character riddles / riddles / IQ test',
+      cnNote: 'Chinese wordplay: these riddles rely on homophones and character structure, so questions and answers stay in Chinese. The interface is fully in English.'
     }
   };
   var allData = window.allQuizData || {};
   var lang = localStorage.getItem('lang') === 'en' ? 'en' : 'zh';
-  function t(k) { return I18N[lang][k] || I18N.zh[k] || k; }
+  /* 用 !== undefined 判断，避免空字符串文案（如中文态的汉字题说明）
+     被 || 链误判为缺键而回退成键名 */
+  function t(k) {
+    var v = I18N[lang][k];
+    if (v === undefined) v = I18N.zh[k];
+    return v === undefined ? k : v;
+  }
 
   var filtered = [], idx = 0, vis = false, hist = [], curType = 'njjzw';
   var tabs = document.querySelectorAll('.quiz-tab');
@@ -207,6 +216,9 @@
     title.textContent = t(TITLE_KEY[curType]);
     syncAnswerBtn();
     if (!filtered.length) q.textContent = t('noMatch');
+    /* 汉字题说明只在 EN 界面出现；中文界面不留空占位 */
+    var note = document.getElementById('quizCnNote');
+    if (note) note.hidden = !note.textContent.trim();
   }
 
   tabs.forEach(function (tab) {

@@ -1,7 +1,7 @@
 {
-  "name": "头脑体操 · Brain Gym",
+  "name": "头脑体操 · Brain Teasers | quiz.netcn.org",
   "short_name": "头脑体操",
-  "description": "脑筋急转弯、猜字谜、猜谜语、智力测试——3,193 道精选题目，点击显示答案，随机切换，支持键盘空格/←/→。",
+  "description": "3,193 道汉字趣味题 · 3,193 Chinese wordplay puzzles with an English interface.",
   "lang": "zh-CN",
   "dir": "ltr",
   "start_url": "./",
@@ -9,7 +9,7 @@
   "id": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#ffffff",
+  "background_color": "#fafbfc",
   "theme_color": "#c2410c",
   "categories": ["games", "education", "entertainment"],
   "icons": [
