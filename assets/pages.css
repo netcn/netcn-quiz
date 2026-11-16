@@ -13,6 +13,11 @@ body {
   margin: 0 auto;
   padding: 26px 16px 44px;
 }
+/* 统一壳层对 main 有 width:auto!important；用 main.q-wrap 提高优先级，避免按内容宽度收缩 */
+main.q-wrap {
+  width: 100% !important;
+  max-width: 860px !important;
+}
 .q-crumb {
   display: flex;
   flex-wrap: wrap;

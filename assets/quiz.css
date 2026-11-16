@@ -7,14 +7,19 @@ body {
 .container {
   flex: 1;
   width: 100%;
-  max-width: 960px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 24px 16px 40px;
+}
+/* 统一壳层默认 width:auto 会让 flex 容器按内容收缩，这里锁定 quiz 的内容列宽 */
+body > .container {
+  width: 100% !important;
+  max-width: 860px !important;
 }
 .nc-foot { margin-top: auto; }
 
 .quiz-hero {
-  max-width: 760px;
+  max-width: 100%;
   margin: 0 auto 22px;
   text-align: center;
 }
@@ -40,7 +45,7 @@ body {
   color: var(--color-text-secondary);
 }
 
-.quiz-container { max-width: 760px; margin: 0 auto; }
+.quiz-container { max-width: 100% !important; margin: 0 auto; }
 .quiz-controls {
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
   gap: 10px; margin-bottom: 14px; padding: 10px 14px;
@@ -164,7 +169,7 @@ body {
   color: var(--color-bg); font-size: 12px; text-align: center;
 }
 
-.quiz-browse { max-width: 760px; margin: 34px auto 0; }
+.quiz-browse { max-width: 100%; margin: 34px auto 0; }
 .quiz-browse-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .quiz-browse-head h2 { margin: 0; font-size: 18px; color: var(--color-text-primary); }
 .quiz-browse-head a { font-size: 13px; color: var(--color-link); }
