@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8"><script id="ncn-theme-boot">(function(){try{var d=document.documentElement,t="";var m=(document.cookie||"").match(/(?:^|; )ncn_theme=(dark|light)/g);if(m&&m.length){t=m[m.length-1].split("=")[1]||""}if(t!=="dark"&&t!=="light"){try{t=localStorage.getItem("theme")||""}catch(e){}}if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}d.setAttribute("data-theme",t);if(t==="dark"){d.classList.add("dark")}else{d.classList.remove("dark")}}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="脑筋急转弯、猜字谜、猜谜语、智力测试，1,113 道精选题目，分类清晰，趣味十足，点击显示答案，随机切换。">
+    <meta name="description" content="脑筋急转弯、猜字谜、猜谜语、智力测试，1,147 道精选题目，分类清晰，趣味十足，点击显示答案，随机切换。">
     <meta name="keywords" content="脑筋急转弯,猜字谜,猜谜语,智力测试,趣味问答,谜语大全,字谜大全">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://quiz.netcn.org/">
     <meta property="og:title" content="头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试">
-    <meta property="og:description" content="1,113 道精选题目，分类清晰，趣味十足，点击显示答案，随机切换。">
+    <meta property="og:description" content="1,147 道精选题目，分类清晰，趣味十足，点击显示答案，随机切换。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://quiz.netcn.org/">
     <meta property="og:site_name" content="头脑体操">
@@ -17,13 +17,13 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://quiz.netcn.org/assets/icons/og-share.png">
     <meta name="twitter:title" content="头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试">
-    <meta name="twitter:description" content="1,113 道精选题目，分类清晰，趣味十足，点击显示答案。">
+    <meta name="twitter:description" content="1,147 道精选题目，分类清晰，趣味十足，点击显示答案。">
     <title>头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试</title>
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/quiz.css?v=20261116u5">
+    <link rel="stylesheet" href="assets/quiz.css?v=20261116u6">
     <link rel="stylesheet" href="shell/netcn-shell.css?v=20261111b3">
     <link rel="stylesheet" href="shell/netcn-ui.css?v=20261116b4">
-    <script src="shell/shell.js?v=20261116b4"></script>
+    <script src="shell/shell.js?v=20261116b5"></script>
     <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48">
     <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -45,16 +45,17 @@
         </div>
         <div class="nc-search has-icon">
             <span class="search-icon" aria-hidden="true">⌕</span>
-            <input id="quizSearch" type="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="搜索 1,113 题…" aria-label="搜索题目" aria-controls="searchPanel" aria-expanded="false">
+            <input id="quizSearch" type="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="搜索 1,147 题…" aria-label="搜索题目" aria-controls="searchPanel" aria-expanded="false">
         </div>
         <div class="nc-tools">
+            <a class="nc-tool" href="/topics/">专题</a>
             <button class="nc-tool" id="ncTheme" type="button" aria-label="切换明暗">☾</button>
             <button class="nc-tool" id="ncLang" type="button" aria-label="切换语言">EN</button>
         </div>
     </nav>
 <div class="container">
     <header class="quiz-hero">
-        <p class="quiz-kicker">头脑体操 · 1,113 题 · 每题都有解析</p>
+        <p class="quiz-kicker">头脑体操 · 1,147 题 · 每题都有解析</p>
         <h1>头脑体操：脑筋急转弯、字谜、谜语与智力测试</h1>
         <p>打开即玩，无需登录。答案默认隐藏，点开后会给出答案和一句可读的解析。</p>
     </header>
@@ -100,7 +101,7 @@
     <section class="quiz-browse" aria-labelledby="browseTitle">
         <div class="quiz-browse-head">
             <h2 id="browseTitle">按分类浏览</h2>
-            <a href="/lib/">全部题目 →</a>
+            <div class="quiz-browse-links"><a href="/topics/">专题 →</a><a href="/lib/">全部题目 →</a></div>
         </div>
         <div class="quiz-lib-grid">
             <a class="quiz-lib-card" href="/lib/njjzw/"><span class="lib-icon">💡</span><strong>脑筋急转弯</strong><span class="lib-count" data-lib-count="njjzw">202 题</span><small>经典急转弯 / 逻辑陷阱</small></a>
@@ -136,10 +137,10 @@
             <a href="https://game.netcn.org/" data-nc-to="game">游戏厅</a><a href="https://sky.netcn.org/" data-nc-to="sky">火烧云</a>
         </nav>
         <span class="nc-foot-note" data-i18n="footNote">© 2011-2026 头脑体操 quiz.netcn.org</span>
-        <span class="nc-foot-site" data-i18n="footSite">1,113 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试</span>
+        <span class="nc-foot-site" data-i18n="footSite">1,147 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试</span>
     </footer>
 
-<script src="assets/quiz.js?v=20261116q14"></script>
+<script src="assets/quiz.js?v=20261116q15"></script>
 <script>
 /* 界面级双语：只翻译界面文案，题目与答案保持中文（汉字谐音/拆字不适合翻译） */
 (function () {
@@ -147,26 +148,26 @@
   var I18N = {
     zh: {
       brand: '头脑体操', nav: '导航', ask: '科学问答', quiz: '头脑体操', game: '玩游戏',
-      searchPh: '搜索 1,113 题…',
+      searchPh: '搜索 1,147 题…',
       t1: '脑筋急转弯', t2: '猜字谜', t3: '猜谜语', t4: '智力测试',
       statsOf: '第', statsUnit: '题', prev: '◀ 上一题', show: '显示答案', hide: '隐藏答案', next: '随机下一题 ▶',
       share: '复制本题链接', shared: '本题链接已复制',
       loading: '加载中...', noMatch: '没有找到匹配的题目，换个更短的关键词试试。',
       searchFound: '找到', searchUnit: '条', searchLimit: '，显示前 30 条', searchEmpty: '没有找到匹配的题目。可以试试更短的关键词，或按分类浏览。',
       footNote: '© 2011-2026 头脑体操 quiz.netcn.org',
-      footSite: '1,113 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试',
+      footSite: '1,147 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试',
       cnNote: ''
     },
     en: {
       brand: 'Brain Teasers', nav: 'Nav', ask: 'Science Q&A', quiz: 'Brain Teasers', game: 'Games',
-      searchPh: 'Search 1,113 questions...',
+      searchPh: 'Search 1,147 questions...',
       t1: 'Brain Teasers', t2: 'Character Riddles', t3: 'Riddles', t4: 'IQ Test',
       statsOf: '', statsUnit: '', prev: '◀ Prev', show: 'Show answer', hide: 'Hide answer', next: 'Random next ▶',
       share: 'Copy link', shared: 'Question link copied',
       loading: 'Loading...', noMatch: 'No matching question. Try another word.',
       searchFound: 'Found', searchUnit: 'results', searchLimit: ', showing first 30', searchEmpty: 'No matching question. Try a shorter keyword or browse by category.',
       footNote: '© 2011-2026 Brain Teasers quiz.netcn.org',
-      footSite: '1,113 questions · Brain teasers / character riddles / riddles / IQ test',
+      footSite: '1,147 questions · Brain teasers / character riddles / riddles / IQ test',
       cnNote: 'Chinese wordplay: these riddles rely on homophones and character structure, so questions and answers stay in Chinese. The interface is fully in English.'
     }
   };
