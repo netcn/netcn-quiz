@@ -50,7 +50,7 @@
       tab: { nav: '首页', ask: '问答', quiz: '脑力', game: '游戏', sky: '观天' },
       brand: { nav: '简洁导航', ask: '科学问答', quiz: '头脑体操', game: '游戏厅', sky: '火烧云' },
       ph: {
-        nav: '搜索站点...', ask: '搜索科学问题，或随便逛逛…', quiz: '搜索题目…（回车定位）',
+        nav: '搜索站点...', ask: '搜索科学问题，或随便逛逛…', quiz: '搜索 1,113 题…',
         game: '搜索游戏…（按 / 聚焦）', sky: '搜城市，如 上海 / 敦煌'
       },
       footNote: '© 2011–2026 netcn.org',
@@ -80,7 +80,7 @@
       brand: { nav: 'Simple Nav', ask: 'Science Q&A', quiz: 'Brain Teasers', game: 'Arcade', sky: 'Sky Watch' },
       ph: {
         nav: 'Search sites...', ask: 'Search science questions, or just wander…',
-        quiz: 'Search questions...', game: 'Search games...', sky: 'Search a city, e.g. Shanghai'
+        quiz: 'Search 1,113 questions...', game: 'Search games...', sky: 'Search a city, e.g. Shanghai'
       },
       footNote: '© 2011–2026 netcn.org',
       footSite: {

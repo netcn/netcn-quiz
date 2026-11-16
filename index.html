@@ -13,37 +13,29 @@
     <meta property="og:url" content="https://quiz.netcn.org/">
     <meta property="og:site_name" content="头脑体操">
     <meta property="og:image" content="https://quiz.netcn.org/assets/icons/og-share.png">
+    <meta property="og:image:alt" content="头脑体操：脑筋急转弯、字谜、谜语与智力测试">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://quiz.netcn.org/assets/icons/og-share.png">
     <meta name="twitter:title" content="头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试">
     <meta name="twitter:description" content="1,113 道精选题目，分类清晰，趣味十足，点击显示答案。">
     <title>头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试</title>
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/quiz.css">
+    <link rel="stylesheet" href="assets/quiz.css?v=20261116u2">
     <link rel="stylesheet" href="shell/netcn-shell.css?v=20261111b3">
-    <link rel="stylesheet" href="shell/netcn-ui.css?v=20261111b3">
-    <script src="shell/shell.js?v=20261116b2"></script>
+    <link rel="stylesheet" href="shell/netcn-ui.css?v=20261116b4">
+    <script src="shell/shell.js?v=20261116b4"></script>
     <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48">
     <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#c2410c">
     <meta name="llms-txt" content="https://netcn.org/llms.txt">
-    <style>
-    .quiz-tabs { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
-    .quiz-tab {
-      flex: 1; padding: 8px 12px; border: 1px solid var(--color-border-light);
-      border-radius: 8px; cursor: pointer; text-align: center; font-size: 15px;
-      background: var(--color-card-bg); color: var(--color-text-secondary); font-weight: 600;
-      min-width: 100px;
-    }
-    .quiz-tab .cnt { font-size: 12px; opacity: .75; font-weight: 400; }
-    .quiz-tab:hover { border-color: var(--color-accent); color: var(--color-accent); }
-    .quiz-tab.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
-    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"头脑体操","alternateName":["头脑体操","Brain Teasers"],"url":"https://quiz.netcn.org/","inLanguage":"zh-CN","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://quiz.netcn.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}}
+    </script>
 </head>
 <body>
-<nav class="nc-shell" aria-label="netcn 站点导航">
+<nav class="nc-shell" data-nc="quiz" aria-label="netcn 站点导航">
         <a class="nc-brand" href="/" aria-label="返回首页"><span class="nc-mk" aria-hidden="true"></span><span class="nc-brand-txt">头脑体操</span></a>
         <div class="nc-sw">
             <a href="https://netcn.org/" data-nc-to="nav">导航</a>
@@ -53,7 +45,7 @@
         </div>
         <div class="nc-search has-icon">
             <span class="search-icon" aria-hidden="true">⌕</span>
-            <input id="quizSearch" type="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="搜索题目…（回车定位）" aria-label="搜索题目">
+            <input id="quizSearch" type="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="搜索 1,113 题…" aria-label="搜索题目" aria-controls="searchPanel" aria-expanded="false">
         </div>
         <div class="nc-tools">
             <button class="nc-tool" id="ncTheme" type="button" aria-label="切换明暗">☾</button>
@@ -61,34 +53,84 @@
         </div>
     </nav>
 <div class="container">
-    
+    <header class="quiz-hero">
+        <p class="quiz-kicker">头脑体操 · 1,113 题 · 每题都有解析</p>
+        <h1>头脑体操：脑筋急转弯、字谜、谜语与智力测试</h1>
+        <p>打开即玩，无需登录。答案默认隐藏，点开后会给出答案和一句可读的解析。</p>
+    </header>
 
     <div class="quiz-container">
-        <div class="quiz-tabs" id="quizTabs">
-            <div class="quiz-tab active" data-type="njjzw">💡 <span data-i18n="t1">脑筋急转弯</span><span class="cnt"></span></div>
-            <div class="quiz-tab" data-type="zimi">✍️ <span data-i18n="t2">猜字谜</span><span class="cnt"></span></div>
-            <div class="quiz-tab" data-type="miyu">❓ <span data-i18n="t3">猜谜语</span><span class="cnt"></span></div>
-            <div class="quiz-tab" data-type="iq">🧠 <span data-i18n="t4">智力测试</span><span class="cnt"></span></div>
+        <div class="quiz-tabs" id="quizTabs" role="tablist" aria-label="题库">
+            <button class="quiz-tab active" type="button" role="tab" aria-selected="true" aria-controls="quizCard" data-type="njjzw">💡 <span data-i18n="t1">脑筋急转弯</span><span class="cnt"></span></button>
+            <button class="quiz-tab" type="button" role="tab" aria-selected="false" aria-controls="quizCard" data-type="zimi">✍️ <span data-i18n="t2">猜字谜</span><span class="cnt"></span></button>
+            <button class="quiz-tab" type="button" role="tab" aria-selected="false" aria-controls="quizCard" data-type="miyu">❓ <span data-i18n="t3">猜谜语</span><span class="cnt"></span></button>
+            <button class="quiz-tab" type="button" role="tab" aria-selected="false" aria-controls="quizCard" data-type="iq">🧠 <span data-i18n="t4">智力测试</span><span class="cnt"></span></button>
         </div>
         <p id="quizCnNote" data-i18n="cnNote" hidden style="font-size:12px;line-height:1.65;color:var(--ui-ink3,#98a1b0);margin:0 0 12px;padding:8px 12px;background:var(--ui-surface,#f4f6f8);border-radius:10px"></p>
 
+        <section id="searchPanel" class="search-panel" hidden aria-label="搜索结果">
+            <div class="search-head">
+                <span id="searchSummary" role="status"></span>
+                <button type="button" class="search-close" id="searchClose" aria-label="关闭搜索">×</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+            <p id="searchEmpty" class="search-empty" hidden></p>
+        </section>
+
         <div class="quiz-controls">
             <div class="quiz-stats"><b id="quizTitle">脑筋急转弯</b> <span data-i18n="statsOf">第</span> <span id="currentNum">1</span> / <span id="totalNum">0</span> <span data-i18n="statsUnit">题</span></div>
+            <button class="quiz-linkbtn" id="btnShare" type="button" data-i18n="share">复制本题链接</button>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" id="quizCard" role="tabpanel" aria-live="polite">
             <div class="quiz-category-tag" id="categoryTag">-</div>
-            <div class="quiz-question" id="question">加载中...</div>
+            <h2 class="quiz-question" id="question">加载中...</h2>
             <div class="quiz-answer" id="answer"></div>
         </div>
 
         <div class="quiz-buttons">
             <button class="btn btn-prev" id="btnPrev" data-i18n="prev">◀ 上一题</button>
-            <button class="btn btn-answer" id="btnAnswer">显示答案</button>
+            <button class="btn btn-answer" id="btnAnswer" aria-pressed="false">显示答案</button>
             <button class="btn btn-next" id="btnNext" data-i18n="next">随机下一题 ▶</button>
         </div>
+        <div id="toast" class="quiz-toast" role="status" hidden></div>
     </div>
 
+    <section class="quiz-browse" aria-labelledby="browseTitle">
+        <div class="quiz-browse-head">
+            <h2 id="browseTitle">按分类浏览</h2>
+            <a href="/lib/">全部题目 →</a>
+        </div>
+        <div class="quiz-lib-grid">
+            <a class="quiz-lib-card" href="/lib/njjzw/"><span class="lib-icon">💡</span><strong>脑筋急转弯</strong><span class="lib-count" data-lib-count="njjzw">202 题</span><small>经典急转弯 / 逻辑陷阱</small></a>
+            <a class="quiz-lib-card" href="/lib/zimi/"><span class="lib-icon">✍️</span><strong>猜字谜</strong><span class="lib-count" data-lib-count="zimi">249 题</span><small>打一字 / 日常用品 / 动植物</small></a>
+            <a class="quiz-lib-card" href="/lib/miyu/"><span class="lib-icon">❓</span><strong>猜谜语</strong><span class="lib-count" data-lib-count="miyu">282 题</span><small>动物 / 成语 / 物品 / 字谜</small></a>
+            <a class="quiz-lib-card" href="/lib/iq/"><span class="lib-icon">🧠</span><strong>智力测试</strong><span class="lib-count" data-lib-count="iq">380 题</span><small>数学 / 逻辑 / 图形 / 空间</small></a>
+        </div>
+        <div class="quiz-cat-links" aria-label="子分类">
+            <a href="/lib/njjzw/classic/">经典急转弯</a>
+            <a href="/lib/njjzw/logic/">逻辑陷阱</a>
+            <a href="/lib/zimi/char/">打一字</a>
+            <a href="/lib/zimi/daily/">日常用品</a>
+            <a href="/lib/zimi/nature/">自然现象</a>
+            <a href="/lib/zimi/animal/">动物字谜</a>
+            <a href="/lib/zimi/plant/">植物字谜</a>
+            <a href="/lib/zimi/place/">地名字谜</a>
+            <a href="/lib/miyu/idiom/">成语谜语</a>
+            <a href="/lib/miyu/object/">物品谜语</a>
+            <a href="/lib/miyu/char/">字谜</a>
+            <a href="/lib/miyu/plant/">植物谜语</a>
+            <a href="/lib/miyu/nature/">自然谜语</a>
+            <a href="/lib/miyu/animal/">动物谜语</a>
+            <a href="/lib/miyu/food/">食物谜语</a>
+            <a href="/lib/miyu/body/">人体谜语</a>
+            <a href="/lib/iq/math/">数学思维</a>
+            <a href="/lib/iq/logic/">逻辑推理</a>
+            <a href="/lib/iq/figure/">图形推理</a>
+            <a href="/lib/iq/space/">空间想象</a>
+        </div>
+        <p class="quiz-browse-note"><a href="/about/">关于本站与内容标准</a> · 题目按“宁缺毋滥”整理，每题都有答案与解析。</p>
+    </section>
 </div>
 <footer class="nc-foot">
         <nav class="nc-foot-nav" aria-label="netcn 站点">
@@ -109,49 +151,80 @@
   var I18N = {
     zh: {
       brand: '头脑体操', nav: '导航', ask: '科学问答', quiz: '头脑体操', game: '玩游戏',
-      searchPh: '搜索题目…（回车定位）',
+      searchPh: '搜索 1,113 题…',
       t1: '脑筋急转弯', t2: '猜字谜', t3: '猜谜语', t4: '智力测试',
       statsOf: '第', statsUnit: '题', prev: '◀ 上一题', show: '显示答案', hide: '隐藏答案', next: '随机下一题 ▶',
-      loading: '加载中...', noMatch: '没有找到匹配的题目，换个词试试。',
+      share: '复制本题链接', shared: '本题链接已复制',
+      loading: '加载中...', noMatch: '没有找到匹配的题目，换个更短的关键词试试。',
+      searchFound: '找到', searchUnit: '条', searchLimit: '，显示前 30 条', searchEmpty: '没有找到匹配的题目。可以试试更短的关键词，或按分类浏览。',
       footNote: '© 2011-2026 头脑体操 quiz.netcn.org',
       footSite: '1,113 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试',
       cnNote: ''
     },
     en: {
       brand: 'Brain Teasers', nav: 'Nav', ask: 'Science Q&A', quiz: 'Brain Teasers', game: 'Games',
-      searchPh: 'Search questions...',
+      searchPh: 'Search 1,113 questions...',
       t1: 'Brain Teasers', t2: 'Character Riddles', t3: 'Riddles', t4: 'IQ Test',
       statsOf: '', statsUnit: '', prev: '◀ Prev', show: 'Show answer', hide: 'Hide answer', next: 'Random next ▶',
+      share: 'Copy link', shared: 'Question link copied',
       loading: 'Loading...', noMatch: 'No matching question. Try another word.',
+      searchFound: 'Found', searchUnit: 'results', searchLimit: ', showing first 30', searchEmpty: 'No matching question. Try a shorter keyword or browse by category.',
       footNote: '© 2011-2026 Brain Teasers quiz.netcn.org',
       footSite: '1,113 questions · Brain teasers / character riddles / riddles / IQ test',
       cnNote: 'Chinese wordplay: these riddles rely on homophones and character structure, so questions and answers stay in Chinese. The interface is fully in English.'
     }
   };
   var allData = window.allQuizData || {};
+  var LIBS = ['njjzw', 'zimi', 'miyu', 'iq'];
+  var LIB_TITLE = { njjzw: '脑筋急转弯', zimi: '猜字谜', miyu: '猜谜语', iq: '智力测试' };
+  var LIB_ICON = { njjzw: '💡', zimi: '✍️', miyu: '❓', iq: '🧠' };
+  var TITLE_KEY = { njjzw: 't1', zimi: 't2', miyu: 't3', iq: 't4' };
   var lang = localStorage.getItem('lang') === 'en' ? 'en' : 'zh';
-  /* 用 !== undefined 判断，避免空字符串文案（如中文态的汉字题说明）
-     被 || 链误判为缺键而回退成键名 */
   function t(k) {
     var v = I18N[lang][k];
     if (v === undefined) v = I18N.zh[k];
     return v === undefined ? k : v;
   }
 
-  var filtered = [], idx = 0, vis = false, hist = [], curType = 'njjzw';
+  var filtered = [], idx = 0, vis = false, hist = [], curType = 'njjzw', searchActive = false;
   var tabs = document.querySelectorAll('.quiz-tab');
   var title = document.getElementById('quizTitle');
   var cn = document.getElementById('currentNum');
   var tn = document.getElementById('totalNum');
   var ct = document.getElementById('categoryTag');
-  var q = document.getElementById('question');
+  var questionEl = document.getElementById('question');
   var a = document.getElementById('answer');
   var ba = document.getElementById('btnAnswer');
   var bn = document.getElementById('btnNext');
   var bp = document.getElementById('btnPrev');
   var search = document.getElementById('quizSearch');
-  var TITLE_KEY = { njjzw: 't1', zimi: 't2', miyu: 't3', iq: 't4' };
+  var searchPanel = document.getElementById('searchPanel');
+  var searchSummary = document.getElementById('searchSummary');
+  var searchResults = document.getElementById('searchResults');
+  var searchEmpty = document.getElementById('searchEmpty');
+  var searchClose = document.getElementById('searchClose');
+  var shareBtn = document.getElementById('btnShare');
+  var toast = document.getElementById('toast');
 
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function mark(text, kw) {
+    var raw = String(text || '');
+    var k = String(kw || '').trim().split(/\s+/)[0] || '';
+    if (!k) return esc(raw);
+    var pos = raw.toLowerCase().indexOf(k.toLowerCase());
+    if (pos < 0) return esc(raw);
+    return esc(raw.slice(0, pos)) + '<mark>' + esc(raw.slice(pos, pos + k.length)) + '</mark>' + esc(raw.slice(pos + k.length));
+  }
+  function formatAnswer(text) {
+    var raw = String(text || '');
+    var p = raw.indexOf('。');
+    if (p >= 0) return '<strong>' + esc(raw.slice(0, p + 1)) + '</strong>' + esc(raw.slice(p + 1));
+    return '<strong>' + esc(raw) + '</strong>';
+  }
   function shuffle(arr) {
     var r = arr.slice();
     for (var i = r.length - 1; i > 0; i--) {
@@ -163,47 +236,141 @@
   function syncAnswerBtn() {
     ba.textContent = t(vis ? 'hide' : 'show');
     ba.classList.toggle('hide-answer', vis);
+    ba.setAttribute('aria-pressed', vis ? 'true' : 'false');
   }
-  function show(i) {
+  function syncTitle(d) {
+    if (!d) { document.title = '头脑体操 · ' + t(TITLE_KEY[curType]); return; }
+    document.title = d.q + ' — ' + d.c + ' | 头脑体操';
+  }
+  function currentUrl(withQuestion) {
+    var p = new URLSearchParams();
+    if (searchActive && search.value.trim()) {
+      p.set('s', search.value.trim());
+    } else if (withQuestion && filtered.length) {
+      var orig = allData[curType] || [];
+      var pos = orig.indexOf(filtered[idx]);
+      if (pos >= 0) p.set('q', curType + '-' + (pos + 1));
+    } else {
+      p.set('lib', curType);
+    }
+    var qs = p.toString();
+    return location.pathname + (qs ? '?' + qs : '');
+  }
+  function syncUrl(withQuestion) {
+    try { history.replaceState(null, '', currentUrl(withQuestion)); } catch (e) {}
+  }
+  function show(i, opts) {
     if (!filtered.length) return;
     if (i < 0) i = filtered.length - 1;
     if (i >= filtered.length) i = 0;
     idx = i;
     var d = filtered[idx];
     ct.textContent = d.c;
-    q.textContent = d.q;
-    a.textContent = d.a;
+    questionEl.textContent = d.q;
+    a.innerHTML = formatAnswer(d.a);
     a.classList.remove('show');
     vis = false;
     syncAnswerBtn();
     cn.textContent = idx + 1;
     tn.textContent = filtered.length;
+    syncTitle(d);
+    if (!(opts && opts.url === false)) syncUrl(true);
   }
-  function doSearch() {
-    var kw = search.value.trim();
-    var pool = allData[curType] || [];
-    if (!kw) { filtered = shuffle(pool); hist = []; show(0); return; }
-    filtered = pool.filter(function (x) {
-      return (x.q || '').indexOf(kw) >= 0 || (x.a || '').indexOf(kw) >= 0;
+  function setActiveTab(type) {
+    tabs.forEach(function (tab) {
+      var on = tab.dataset.type === type;
+      tab.classList.toggle('active', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
     });
-    hist = [];
-    if (filtered.length) { show(0); return; }
-    ct.textContent = '';
-    q.textContent = t('noMatch');
-    a.textContent = '';
-    a.classList.remove('show');
-    vis = false;
-    syncAnswerBtn();
-    cn.textContent = '0'; tn.textContent = '0';
   }
-  function switchType(type) {
+  function switchType(type, opts) {
     curType = type;
+    setActiveTab(type);
     title.textContent = t(TITLE_KEY[type]);
-    tabs.forEach(function (tab) { tab.classList.toggle('active', tab.dataset.type === type); });
-    filtered = shuffle(allData[type] || []);
+    filtered = (opts && opts.keep) ? (allData[type] || []).slice() : shuffle(allData[type] || []);
     hist = [];
-    show(0);
-    if (search.value.trim()) doSearch();
+    show(0, { url: false });
+    if (!(opts && opts.url === false)) syncUrl(false);
+  }
+  function hideSearch(clear) {
+    searchActive = false;
+    searchPanel.hidden = true;
+    search.setAttribute('aria-expanded', 'false');
+    if (clear) search.value = '';
+    searchResults.innerHTML = '';
+    searchEmpty.hidden = true;
+  }
+  function renderSearch(kw) {
+    var toks = kw.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!toks.length) { hideSearch(false); return; }
+    var out = [];
+    LIBS.forEach(function (lib) {
+      (allData[lib] || []).forEach(function (item, i) {
+        var hay = (item.q + ' ' + item.a + ' ' + item.c).toLowerCase();
+        var ok = true;
+        for (var k = 0; k < toks.length; k++) {
+          if (hay.indexOf(toks[k]) < 0) { ok = false; break; }
+        }
+        if (!ok) return;
+        var score = 0;
+        if (item.q === kw) score += 1000;
+        if (item.q.indexOf(kw) >= 0) score += 500;
+        if (item.c.indexOf(kw) >= 0) score += 40;
+        if (item.a.indexOf(kw) >= 0) score += 20;
+        out.push({ lib: lib, i: i, item: item, score: score });
+      });
+    });
+    out.sort(function (x, y) {
+      return y.score - x.score || LIBS.indexOf(x.lib) - LIBS.indexOf(y.lib) || x.i - y.i;
+    });
+    searchActive = true;
+    searchPanel.hidden = false;
+    search.setAttribute('aria-expanded', 'true');
+    if (!out.length) {
+      searchSummary.textContent = '';
+      searchResults.innerHTML = '';
+      searchEmpty.hidden = false;
+      searchEmpty.textContent = t('searchEmpty');
+      syncUrl(false);
+      return;
+    }
+    var shown = out.slice(0, 30);
+    searchSummary.textContent = t('searchFound') + ' ' + out.length + ' ' + t('searchUnit') + (out.length > 30 ? t('searchLimit') : '');
+    searchEmpty.hidden = true;
+    searchResults.innerHTML = shown.map(function (r) {
+      return '<button type="button" class="search-item" data-lib="' + esc(r.lib) + '" data-i="' + r.i + '">' +
+        '<span class="search-lib">' + LIB_ICON[r.lib] + ' ' + esc(LIB_TITLE[r.lib]) + '</span>' +
+        '<span class="search-q">' + mark(r.item.q, kw) + '</span>' +
+        '<span class="search-c">' + esc(r.item.c) + '</span></button>';
+    }).join('');
+    syncUrl(false);
+  }
+  function gotoQuestion(lib, i) {
+    curType = lib;
+    setActiveTab(lib);
+    title.textContent = t(TITLE_KEY[lib]);
+    filtered = (allData[lib] || []).slice();
+    hist = [];
+    hideSearch(true);
+    show(i, { url: true });
+  }
+  function toastMsg(msg) {
+    toast.textContent = msg;
+    toast.hidden = false;
+    clearTimeout(toastMsg._t);
+    toastMsg._t = setTimeout(function () { toast.hidden = true; }, 1800);
+  }
+  function copyShare() {
+    var orig = allData[curType] || [];
+    var pos = orig.indexOf(filtered[idx]);
+    var url = location.origin + location.pathname + '?q=' + curType + '-' + (pos >= 0 ? pos + 1 : 1);
+    function done() { toastMsg(t('shared')); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { window.prompt('复制链接', url); });
+    } else {
+      window.prompt('复制链接', url);
+    }
   }
   function applyLang(l) {
     lang = l === 'en' ? 'en' : 'zh';
@@ -215,15 +382,48 @@
     });
     title.textContent = t(TITLE_KEY[curType]);
     syncAnswerBtn();
-    if (!filtered.length) q.textContent = t('noMatch');
-    /* 汉字题说明只在 EN 界面出现；中文界面不留空占位 */
+    if (!filtered.length) questionEl.textContent = t('noMatch');
+    else syncTitle(filtered[idx]);
     var note = document.getElementById('quizCnNote');
     if (note) note.hidden = !note.textContent.trim();
+    if (searchActive && search.value.trim()) renderSearch(search.value.trim());
+  }
+  function loadFromQuery() {
+    var params = new URLSearchParams(location.search);
+    var qp = params.get('q');
+    var lib = params.get('lib');
+    var sp = params.get('s');
+    if (qp) {
+      var m = /^([a-z]+)-(\d+)$/.exec(qp);
+      if (m && allData[m[1]]) {
+        curType = m[1];
+        setActiveTab(m[1]);
+        filtered = (allData[m[1]] || []).slice();
+        hist = [];
+        show(Math.max(0, parseInt(m[2], 10) - 1), { url: false });
+      }
+    } else if (lib && allData[lib]) {
+      switchType(lib, { url: false });
+    }
+    if (sp) {
+      search.value = sp;
+      renderSearch(sp);
+    }
   }
 
   tabs.forEach(function (tab) {
-    tab.querySelector('.cnt').textContent = ' ' + (allData[tab.dataset.type] || []).length;
-    tab.addEventListener('click', function () { switchType(this.dataset.type); });
+    var cnt = tab.querySelector('.cnt');
+    if (cnt) cnt.textContent = ' ' + (allData[tab.dataset.type] || []).length;
+    tab.addEventListener('click', function () { hideSearch(true); switchType(this.dataset.type); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      var list = [].slice.call(tabs);
+      var at = list.indexOf(this);
+      var next = e.key === 'ArrowRight' ? (at + 1) % list.length : (at - 1 + list.length) % list.length;
+      list[next].focus();
+      list[next].click();
+    });
   });
   ba.addEventListener('click', function () {
     vis = !vis;
@@ -238,23 +438,50 @@
     show(n);
   });
   bp.addEventListener('click', function () { if (hist.length) show(hist.pop()); });
-  var searchTimer = null;
+  shareBtn.addEventListener('click', copyShare);
   search.addEventListener('input', function () {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(doSearch, 120);
+    clearTimeout(search._t);
+    search._t = setTimeout(function () {
+      var kw = search.value.trim();
+      if (!kw) { hideSearch(false); syncUrl(false); return; }
+      renderSearch(kw);
+    }, 120);
   });
-  search.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); doSearch(); } });
+  search.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      renderSearch(search.value.trim());
+      var first = searchResults.querySelector('.search-item');
+      if (first) gotoQuestion(first.dataset.lib, parseInt(first.dataset.i, 10));
+    } else if (e.key === 'Escape') {
+      hideSearch(false);
+      syncUrl(false);
+    } else if (e.key === 'ArrowDown') {
+      var first = searchResults.querySelector('.search-item');
+      if (first) { e.preventDefault(); first.focus(); }
+    }
+  });
+  searchResults.addEventListener('click', function (e) {
+    var item = e.target.closest ? e.target.closest('.search-item') : null;
+    if (!item) return;
+    gotoQuestion(item.dataset.lib, parseInt(item.dataset.i, 10));
+  });
+  searchClose.addEventListener('click', function () { hideSearch(false); syncUrl(false); search.focus(); });
   document.addEventListener('keydown', function (e) {
     var tag = ((e.target && e.target.tagName) || '').toLowerCase();
-    if (tag === 'input' || tag === 'textarea') return;
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || tag === 'button' || tag === 'a') return;
+    if (e.target && e.target.isContentEditable) return;
     if (e.key === ' ') { e.preventDefault(); ba.click(); }
     else if (e.key === 'ArrowRight') { e.preventDefault(); bn.click(); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); bp.click(); }
+    else if (e.key === 'Escape') { hideSearch(false); syncUrl(false); }
   });
   document.addEventListener('ncn:lang', function (e) { applyLang(e.detail.lang); });
 
   applyLang(lang);
-  switchType('njjzw');
+  setActiveTab(curType);
+  switchType('njjzw', { url: false });
+  loadFromQuery();
 })();
 </script>
 </body>

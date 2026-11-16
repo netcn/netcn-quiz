@@ -1,0 +1,8 @@
+# 头脑体操
+
+> 中文脑筋急转弯、猜字谜、猜谜语和智力测试。共 1113 题，每题有答案与解析。
+
+- 首页：https://quiz.netcn.org/
+- 全部题目：https://quiz.netcn.org/lib/
+- 关于与内容标准：https://quiz.netcn.org/about/
+- Sitemap：https://quiz.netcn.org/sitemap.xml
