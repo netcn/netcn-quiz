@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="1,113 道精选题目，分类清晰，趣味十足，点击显示答案。">
     <title>头脑体操 - 脑筋急转弯·猜字谜·猜谜语·智力测试</title>
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/quiz.css?v=20261116u4">
+    <link rel="stylesheet" href="assets/quiz.css?v=20261116u5">
     <link rel="stylesheet" href="shell/netcn-shell.css?v=20261111b3">
     <link rel="stylesheet" href="shell/netcn-ui.css?v=20261116b4">
     <script src="shell/shell.js?v=20261116b4"></script>
@@ -84,6 +84,7 @@
 
         <div class="quiz-card" id="quizCard" role="tabpanel" aria-live="polite">
             <div class="quiz-category-tag" id="categoryTag">-</div>
+            <div class="quiz-figure" id="questionFigure" hidden></div>
             <h2 class="quiz-question" id="question">加载中...</h2>
             <div class="quiz-answer" id="answer"></div>
         </div>
@@ -138,7 +139,7 @@
         <span class="nc-foot-site" data-i18n="footSite">1,113 题 · 脑筋急转弯 / 字谜 / 谜语 / 智力测试</span>
     </footer>
 
-<script src="assets/quiz.js?v=20261116q6"></script>
+<script src="assets/quiz.js?v=20261116q7"></script>
 <script>
 /* 界面级双语：只翻译界面文案，题目与答案保持中文（汉字谐音/拆字不适合翻译） */
 (function () {
@@ -188,6 +189,7 @@
   var tn = document.getElementById('totalNum');
   var ct = document.getElementById('categoryTag');
   var questionEl = document.getElementById('question');
+  var figureEl = document.getElementById('questionFigure');
   var a = document.getElementById('answer');
   var ba = document.getElementById('btnAnswer');
   var bn = document.getElementById('btnNext');
@@ -219,6 +221,17 @@
     var p = raw.indexOf('。');
     if (p >= 0) return '<strong>' + esc(raw.slice(0, p + 1)) + '</strong>' + esc(raw.slice(p + 1));
     return '<strong>' + esc(raw) + '</strong>';
+  }
+  function safeSvg(s) {
+    return String(s || '')
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '')
+      .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+      .replace(/\s(href|xlink:href)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+  }
+  function figureHtml(d) {
+    if (!d || !d.svg) return '';
+    return '<figure class="q-figure" role="img" aria-label="' + esc(d.svgAlt || '题目配图') + '">' + safeSvg(d.svg) + '</figure>';
   }
   function shuffle(arr) {
     var r = arr.slice();
@@ -261,6 +274,8 @@
     idx = i;
     var d = filtered[idx];
     ct.textContent = d.c;
+    figureEl.innerHTML = figureHtml(d);
+    figureEl.hidden = !d.svg;
     questionEl.textContent = d.q;
     a.innerHTML = formatAnswer(d.a);
     a.classList.remove('show');
@@ -302,7 +317,7 @@
     var out = [];
     LIBS.forEach(function (lib) {
       (allData[lib] || []).forEach(function (item, i) {
-        var hay = (item.q + ' ' + item.a + ' ' + item.c).toLowerCase();
+        var hay = (item.q + ' ' + item.a + ' ' + item.c + ' ' + (item.svgAlt || '')).toLowerCase();
         var ok = true;
         for (var k = 0; k < toks.length; k++) {
           if (hay.indexOf(toks[k]) < 0) { ok = false; break; }

@@ -137,6 +137,18 @@ body > .container {
   display: inline-block; background: var(--color-accent-bg); color: var(--color-accent);
   padding: 4px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; margin-bottom: 14px;
 }
+.quiz-figure {
+  margin: 0 0 16px;
+  color: var(--color-text-primary);
+  width: 100%;
+}
+.quiz-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+  margin: 0 auto;
+}
 .quiz-question {
   font-size: 27px; color: var(--color-text-primary); line-height: 1.65;
   margin: 0 0 14px; word-break: break-word; font-weight: 700;

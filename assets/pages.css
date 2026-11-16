@@ -39,6 +39,17 @@ main.q-wrap {
   font-size: 12px;
   font-weight: 700;
 }
+.q-figure {
+  margin: 0 0 20px;
+  color: var(--color-text-primary);
+}
+.q-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+  margin: 0 auto;
+}
 .q-title {
   margin: 0 0 16px;
   font-size: clamp(26px, 4vw, 40px);
