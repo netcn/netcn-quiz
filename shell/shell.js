@@ -272,8 +272,8 @@
     [].slice.call(d.querySelectorAll('.nc-foot-legal')).forEach(function (a) {
       a.textContent = l === 'en' ? 'Disclaimer' : '免责声明';
     });
-    /* 首页标题（内页标题保留，避免破坏 SEO） */
-    if (isHome() && t.title[key]) d.title = t.title[key];
+    /* 首页标题（内页标题保留，避免破坏 SEO）；带 q= 的单题深链保留页面自己的题目标题 */
+    if (isHome() && t.title[key] && !new URLSearchParams(location.search).get('q')) d.title = t.title[key];
     /* 底部 Tab */
     var bar = d.querySelector('.nc-tabbar');
     if (bar) {

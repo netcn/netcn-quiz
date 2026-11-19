@@ -54,6 +54,14 @@ body::before,body::after{
   background:none!important;opacity:0!important;animation:none!important;filter:none!important;
 }
 a{color:var(--ui-ac)}
+/* 键盘用户跳过顶栏，直接到 #main */
+.nc-skip{
+  position:fixed;left:12px;top:-54px;z-index:200;
+  padding:9px 14px;border:1px solid var(--ui-ac);border-radius:8px;
+  background:var(--ui-card);color:var(--ui-ac);font-size:13px;font-weight:700;
+  text-decoration:none;transition:top .15s;
+}
+.nc-skip:focus,.nc-skip:focus-visible{top:10px;outline:2px solid var(--ui-ac);outline-offset:2px}
 button,input,select,textarea{font-family:inherit}
 
 /* ---------- 统一栅格：四站顶栏与主体左右边缘完全对齐 ----------

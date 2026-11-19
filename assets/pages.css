@@ -270,3 +270,28 @@ main.q-wrap {
   .q-pager a { max-width: none; }
   .q-pager .next { margin-left: 0; text-align: left; }
 }
+
+/* 窄屏页脚不截断：说明与站点名各占整行，避免最后几像素被省略号裁掉 */
+@media (max-width: 480px) {
+  body > .nc-foot {
+    height: auto !important;
+    min-height: 53px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    flex-wrap: wrap;
+    row-gap: 3px;
+    overflow: visible !important;
+  }
+  body > .nc-foot .nc-foot-note,
+  body > .nc-foot .nc-foot-site {
+    flex: 1 1 100%;
+    min-width: 0;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  body > .nc-foot .nc-foot-site {
+    margin-left: 0;
+    text-align: left;
+  }
+}
