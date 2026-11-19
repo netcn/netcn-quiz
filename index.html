@@ -105,9 +105,9 @@
         </div>
         <div class="quiz-lib-grid">
             <a class="quiz-lib-card" href="/lib/njjzw/"><span class="lib-icon">💡</span><strong>脑筋急转弯</strong><span class="lib-count" data-lib-count="njjzw">202 题</span><small>经典急转弯 / 逻辑陷阱</small></a>
-            <a class="quiz-lib-card" href="/lib/zimi/"><span class="lib-icon">✍️</span><strong>猜字谜</strong><span class="lib-count" data-lib-count="zimi">151 题</span><small>打一字</small></a>
-            <a class="quiz-lib-card" href="/lib/miyu/"><span class="lib-icon">❓</span><strong>猜谜语</strong><span class="lib-count" data-lib-count="miyu">380 题</span><small>动物 / 成语 / 物品 / 地名</small></a>
-            <a class="quiz-lib-card" href="/lib/iq/"><span class="lib-icon">🧠</span><strong>智力测试</strong><span class="lib-count" data-lib-count="iq">380 题</span><small>数学 / 逻辑 / 图形 / 空间</small></a>
+            <a class="quiz-lib-card" href="/lib/zimi/"><span class="lib-icon">✍️</span><strong>猜字谜</strong><span class="lib-count" data-lib-count="zimi">159 题</span><small>打一字</small></a>
+            <a class="quiz-lib-card" href="/lib/miyu/"><span class="lib-icon">❓</span><strong>猜谜语</strong><span class="lib-count" data-lib-count="miyu">407 题</span><small>动物 / 成语 / 物品 / 地名</small></a>
+            <a class="quiz-lib-card" href="/lib/iq/"><span class="lib-icon">🧠</span><strong>智力测试</strong><span class="lib-count" data-lib-count="iq">398 题</span><small>数学 / 逻辑 / 图形 / 空间</small></a>
         </div>
         <div class="quiz-cat-links" aria-label="子分类">
             <a href="/lib/njjzw/classic/">经典急转弯</a>
@@ -178,6 +178,13 @@
   var LIB_ICON = { njjzw: '💡', zimi: '✍️', miyu: '❓', iq: '🧠' };
   var TITLE_KEY = { njjzw: 't1', zimi: 't2', miyu: 't3', iq: 't4' };
   var lang = localStorage.getItem('lang') === 'en' ? 'en' : 'zh';
+  function syncLibCounts() {
+    document.querySelectorAll('[data-lib-count]').forEach(function(el) {
+      var n = (allData[el.getAttribute('data-lib-count')] || []).length;
+      if (n) el.textContent = n + ' 题';
+    });
+  }
+  syncLibCounts();
   function t(k) {
     var v = I18N[lang][k];
     if (v === undefined) v = I18N.zh[k];

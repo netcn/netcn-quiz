@@ -58,6 +58,15 @@ main.q-wrap {
   color: var(--color-text-primary);
   word-break: break-word;
 }
+.q-title .q-options {
+  display: block;
+  margin-top: 10px;
+  font-size: .64em;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+.q-title .q-option { display: block; }
 .q-intro {
   margin: 0 0 18px;
   max-width: 720px;
